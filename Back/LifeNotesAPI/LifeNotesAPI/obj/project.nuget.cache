@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "lLSaC+XAxs3ffF47Qzm8rfKPz2YAKKWhsH26O8Whqmi92NoDuqXt2E1+8xDzCe18Sf+zVRNQcKzVzpnccxz5xw==",
+  "success": true,
+  "projectFilePath": "D:\\Universidad\\LifeNotes\\Back\\LifeNotesAPI\\LifeNotesAPI\\LifeNotesAPI.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\angel\\.nuget\\packages\\fsharp.core\\8.0.300\\fsharp.core.8.0.300.nupkg.sha512"
+  ],
+  "logs": []
+}
