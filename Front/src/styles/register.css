@@ -1,0 +1,46 @@
+.bg-register {
+    background-image:  url('../assets/clouds.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; 
+  }
+
+.register-form {
+    background: rgba(255, 255, 255, 0.3); 
+    backdrop-filter: blur(10px); 
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+  
+    .register-form label {
+        color: #fff;
+        font-style: bold;
+    }
+
+  .register-form h2 {
+        color: #ffffff; 
+        transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease; 
+        font-weight: 700;
+  }
+  
+  .register-form h2:hover {
+        color: #fdcae5; 
+        transform: scale(1.05);
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  }
+
+  .register-form p {
+    color: white;
+  }
+
+  .register-form a {
+    color: #fde9f4; 
+    transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease; 
+  }
+
+    .register-form a:hover {
+        color: #fdcae5; 
+        transform: scale(1.05);
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    }
