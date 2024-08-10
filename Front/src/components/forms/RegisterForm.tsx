@@ -38,6 +38,10 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onError }) => {
       onError('La edad no puede ser negativa.');
       return;
     }
+    if (formData.password.length < 6) {
+      onError('La contraseña debe tener al menos 6 caracteres.');
+      return;
+    }
     if (formData.password !== formData.confirmPassword) {
       onError('Las contraseñas no coinciden.');
       return;
