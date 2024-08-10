@@ -1,0 +1,74 @@
+/* Estilos para el NavBar con glasmorfismo mejorado y una paleta de colores "cute" */
+
+.navbar {
+    background-color: rgba(255, 255, 255, 0.15); /* Fondo translúcido blanco con opacidad */
+    color: #ffffff; 
+    backdrop-filter: blur(12px); /* Desenfoque del fondo para un efecto más notable */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Sombra suave con color gris oscuro */
+    position: sticky;
+    top: 0;
+    width: 100%; 
+    z-index: 1000;
+}
+
+.navbar .container {
+    max-width: 1200px; 
+    margin: 0 auto; 
+    display: flex; /* Flexbox para alinear los elementos internos */
+    justify-content: space-between; /* Espacio entre los elementos del contenedor */
+    align-items: center; /* Alineación vertical */
+}
+
+.navbar .logo img {
+    width: 2rem; 
+    height: 2rem; 
+    border-radius: 50%; /* Redondeo del logo */
+}
+
+.navbar .logo span {
+    font-size: 1.25rem; 
+    font-weight: bold;
+    color: #6D4C41; /* Café para el nombre de la app */
+    font-family: 'Dancing Script', cursive; /* Fuente Dancing Script */
+}
+
+.navbar .nav-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.navbar .nav-links a {
+    color: #3B3B3B; /* Color oscuro para mejor contraste en un fondo blanco */
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem 1rem; /* Espaciado interno para mejorar la visibilidad */
+    border-radius: 5px; /* Bordes redondeados para los enlaces */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.3); /* Fondo translúcido para los enlaces */
+}
+
+.navbar .nav-links a:hover {
+    color: #F9A8D4; /* Rosa pastel suave para hover */
+    background-color: rgba(255, 255, 255, 0.5); /* Fondo translúcido más claro para hover */
+}
+
+.navbar .profile {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.navbar .profile svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: #6D4C41;
+}
+
+.navbar .profile span {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #FECACA; /* Rosa pastel para el texto del perfil */
+}
