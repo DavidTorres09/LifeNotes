@@ -1,0 +1,33 @@
+.audio-recorder-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+  }
+  
+  .btn-record {
+    background-color: #4CAF50; /* Verde cuando no está grabando */
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-record.recording {
+    background-color: #F44336; /* Rojo cuando está grabando */
+  }
+  
+  .icon {
+    width: 24px;
+    height: 24px;
+    color: rgb(19, 9, 9);
+  }
+  
+  .btn-record:hover {
+    opacity: 0.8;
+  }
+  

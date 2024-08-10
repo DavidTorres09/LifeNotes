@@ -11,7 +11,11 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.1.5",
+    "@types/express": "^4.17.21",
+    "@types/multer": "^1.4.11",
     "axios": "^1.7.3",
+    "express": "^4.19.2",
+    "multer": "^1.4.5-lts.1",
     "openai": "^4.54.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
