@@ -1,0 +1,25 @@
+.welcome-container {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 2rem auto;
+    padding: 1rem; 
+}
+
+.greeting-index {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #6D4C41;
+    font-family: 'Patrik Hand', cursive;
+    margin-bottom: 1rem;
+}
+
+.welcome-image {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid;
+}
