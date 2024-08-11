@@ -1,5 +1,5 @@
 import AudioRecorder from "./utils/audioRecorder";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { transcribeAudio } from "../servicesIA/transcribeAudio";
 import "../styles/noteWriter.css";
 
@@ -23,6 +23,7 @@ const NoteWriter: React.FC = () => {
   const [category, setCategory] = useState<string>("");
   const [mood, setMood] = useState<string | null>(null);
   const [message, setMessage] = useState<string>("");
+  const [currentDateTime, setCurrentDateTime] = useState<string>(getDateAndHour());
 
   const [isUploading, setIsUploading] = useState<boolean>(false);
 
@@ -40,15 +41,23 @@ const NoteWriter: React.FC = () => {
     }
   };
 
-  const getDateAndHour = () => {
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentDateTime(getDateAndHour());
+    }, 1000); 
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  function getDateAndHour() {
     const date = new Date();
-    const day = date.getDate();
-    const month = date.getMonth() + 1;
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
     const year = date.getFullYear();
-    const hours = date.getHours();
-    const minutes = date.getMinutes();
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
     return `${day}/${month}/${year} ${hours}:${minutes}`;
-  };
+  }
 
   const simulateTyping = (text: string) => {
     let index = 0;
@@ -62,8 +71,9 @@ const NoteWriter: React.FC = () => {
     }, 50);
   };
 
+
   const handleSave = () => {
-    console.log("Saving note:", { title, category, mood, message });
+    console.log("Saving note:", { title, category, mood, message, currentDateTime });
   };
 
   return (
@@ -71,7 +81,7 @@ const NoteWriter: React.FC = () => {
       <div className="note-writer-form">
         <div className="flex justify-between items-center">
           <h1 className="text-left">Escribir Nota</h1>
-          <p className="text-right mt-2">Fecha: {getDateAndHour()}</p>
+          <p className="text-right mt-2">Fecha: {currentDateTime}</p>
         </div>
 
         <div className="form-group mb-4 input-container">
