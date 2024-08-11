@@ -288,7 +288,7 @@ const FilteredNotes: React.FC = () => {
                   <div className="advice-bubble" onClick={() => console.log("Consejos Amigables")}>
                     🗨️ Consejos Amigables
                   </div>
-                  <div className="advice-bubble" onClick={() => console.log("Consejos Prácticos")}>
+                  <div className="advice-bubble mr-5" onClick={() => console.log("Consejos Prácticos")}>
                     🛠️ Consejos Prácticos
                   </div>
                   <button className="close-button" onClick={closeAdviceOptions}>
