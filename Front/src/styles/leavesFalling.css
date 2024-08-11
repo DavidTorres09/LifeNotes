@@ -14,7 +14,7 @@
     width: 30px;
     height: 30px;
     background: linear-gradient(to bottom right, #ff69b4, #ffb6c1); 
-    border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+    border-radius: 100% 100% 100% 100% / 100% 0% 100% 0%;
     border: 1px solid linear-gradient(to bottom right, #d95999, #cc9099);
     transform: rotate(-45deg) 100% 50%, 50% 100%, 0% 50%;
     opacity: 0.8;
@@ -23,28 +23,48 @@
 
   @keyframes fallVariation {
     0% {
-      transform: translateY(-10vh) rotate(0deg) translateX(0);
-      opacity: 0.8;
+        transform: translateY(-10vh) rotate(0deg) translateX(0);
+        opacity: 0.8;
+    }
+    10% {
+        transform: translateY(10vh) rotate(5deg) translateX(2vw);
+        opacity: 0.8;
     }
     20% {
-      transform: translateY(20vh) rotate(15deg) translateX(-20px);
-      opacity: 0.7;
+        transform: translateY(20vh) rotate(10deg) translateX(4vw);
+        opacity: 0.7;
+    }
+    30% {
+        transform: translateY(30vh) rotate(15deg) translateX(2vw);
+        opacity: 0.7;
     }
     40% {
-      transform: translateY(40vh) rotate(30deg) translateX(20px);
-      opacity: 0.6;
+        transform: translateY(40vh) rotate(20deg) translateX(-2vw);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translateY(50vh) rotate(30deg) translateX(-5vw);
+        opacity: 0.6;
     }
     60% {
-      transform: translateY(60vh) rotate(45deg) translateX(-15px);
-      opacity: 0.5;
+        transform: translateY(60vh) rotate(40deg) translateX(-2vw);
+        opacity: 0.5;
+    }
+    70% {
+        transform: translateY(70vh) rotate(50deg) translateX(2vw);
+        opacity: 0.5;
     }
     80% {
-      transform: translateY(80vh) rotate(60deg) translateX(10px);
-      opacity: 0.4;
+        transform: translateY(80vh) rotate(60deg) translateX(4vw);
+        opacity: 0.4;
+    }
+    90% {
+        transform: translateY(90vh) rotate(70deg) translateX(2vw);
+        opacity: 0.3;
     }
     100% {
-      transform: translateY(100vh) rotate(75deg) translateX(0);
-      opacity: 0;
+        transform: translateY(100vh) rotate(80deg) translateX(0);
+        opacity: 0;
     }
   }
   
