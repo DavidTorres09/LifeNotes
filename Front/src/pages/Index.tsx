@@ -3,6 +3,7 @@ import NavBarDefault from '../components/navbars/NavBarDefault';
 import '../styles/index.css';
 import WelcomeMessage from '../components/RandomGreeting';
 import NoteWriter from '../components/NoteWriter';
+import SakuraLeaves from '../components/utils/SakuraLeaves';
 
 
 export const Index: React.FC = () => {
@@ -12,6 +13,7 @@ export const Index: React.FC = () => {
             <WelcomeMessage username="Usuario" />
             <h2 className='card-title text-center'>¿Cómo te sientes hoy?</h2>
             <NoteWriter />
+            <SakuraLeaves />
         </div>
     );
 }
