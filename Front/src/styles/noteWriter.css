@@ -1,0 +1,158 @@
+.note-writer-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 15px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Patrick Hand', sans-serif;
+  }
+  
+  .note-writer-form {
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(15px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    width: 100%;
+  }
+  
+  .note-writer-form h1 {
+    color: #ffffff;
+    font-size: 1.5rem; 
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  
+  .note-writer-form h2 {
+    color: #ffffff;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  
+  .note-writer-form label {
+    color: #ffffff;
+    font-size: 0.875rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  input, textarea, select {
+    font-size: 0.875rem;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  textarea {
+    resize: none;
+    font-size: 0.875rem;
+  }
+  
+  select {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+  }
+  
+  .mood-button {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 50%;
+    margin: 5px;
+    padding: 5px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    border: 2px solid transparent;
+  }
+  
+  .mood-button:hover {
+    background: rgba(255, 255, 255, 0.4);
+  }
+  
+  .mood-button.selected {
+    background: rgba(255, 255, 255, 0.6);
+    border-color: #fdcae5;
+    transform: scale(1.1);
+  }
+  
+  .save-button {
+    background-color: #b3e5fc; 
+    color: #003c8f; 
+    padding: 8px 16px;
+    border-radius: 12px; 
+    border: 2px solid #a2c2e8;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.save-button:hover {
+    background-color: #81d4fa;
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.save-button:active {
+    background-color: #4fc3f7; 
+    transform: scale(1);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+
+.input-container input,
+.input-container textarea,
+.input-container select {
+    font-size: 0.875rem;
+    padding: 8px 36px 8px 8px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    width: 100%;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.typing-text {
+    display: inline-block;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem;
+    color: #333;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid #333;
+    animation: typing 4s steps(30, end), blink-caret 0.75s step-end infinite;
+  }
+  
+  @keyframes typing {
+    from {
+      width: 0; 
+    }
+    to {
+      width: 100%;
+    }
+  }
+  
+  @keyframes blink-caret {
+    from, to {
+      border-color: transparent;
+    }
+    50% {
+      border-color: #333;
+    }
+  }
+  

@@ -1,0 +1,13 @@
+body {
+    background-image: url('../assets/clouds.jpg') !important;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: 'Patrick Hand';
+    color: #6D4C41;
+}
