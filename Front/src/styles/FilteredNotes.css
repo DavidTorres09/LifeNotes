@@ -172,6 +172,7 @@
     cursor: pointer;
     transition: background 0.3s, transform 0.3s;
     font-size: 0.9rem;
+    color: #333;
   }
   
   .advice-bubble:hover {
@@ -211,3 +212,39 @@
     color: #ffffff;
   }
   
+/* Define la animación de entrada con un desvanecimiento y movimiento suave */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Aplica la animación al contenedor de la respuesta */
+.advice-response {
+  margin-top: 20px;
+  border-top: 1px dashed #333;
+  animation: fadeInUp 1s ease-out;
+}
+
+/* Opcional: Puedes agregar un efecto de escala para un toque extra */
+.advice-response-text {
+  margin-top: 10px;
+  display: inline-block;
+  opacity: 0;
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+.advice-response-text:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.advice-response-text:nth-child(2) {
+  animation-delay: 0.4s;
+}
+.advice-response-text:nth-child(3) {
+  animation-delay: 0.6s;
+}

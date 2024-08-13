@@ -2,6 +2,7 @@ import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 import { Index } from "./pages/Index"; 
 import { MyNotes } from "./pages/MyNotes";
+import { MyProfile } from "./pages/MyProfile";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       {/* <Login /> */}
       {/* <Index /> */}
       <MyNotes />
+      {/* <MyProfile /> */}
     </div>
   );
 }

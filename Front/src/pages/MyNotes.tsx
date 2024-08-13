@@ -2,7 +2,6 @@ import React from 'react';
 import NavBarDefault from '../components/navbars/NavBarDefault';
 import '../styles/index.css';
 import SakuraLeaves from '../components/utils/SakuraLeaves';
-import NotesFilter from '../components/NotesFilter';
 import FilteredNotes from '../components/FilteredNotes';
 
 
