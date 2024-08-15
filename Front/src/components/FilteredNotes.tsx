@@ -298,13 +298,13 @@ const FilteredNotes: React.FC = () => {
           <div className="advice-section">
             <div className="advice-bubbles">
               <div className="advice-bubble" onClick={() => handleAdviceTypeClick('motivacional')}>
-                💡 Consejo Motivacionales
+                💡 Consejo Motivacional
               </div>
               <div className="advice-bubble" onClick={() => handleAdviceTypeClick('amigable')}>
-                🗨️ Consejo Amigables
+                🗨️ Consejo Amigable
               </div>
               <div className="advice-bubble" onClick={() => handleAdviceTypeClick('practico')}>
-                🛠️ Consejo Prácticos
+                🛠️ Consejo Práctico
               </div>
               <div className="advice-bubble" onClick={() => handleAdviceTypeClick('inspirador')}>
                 ✨ Consejo Inspirador

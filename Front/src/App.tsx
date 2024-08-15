@@ -10,8 +10,8 @@ function App() {
       {/* <Register /> */}
       {/* <Login /> */}
       {/* <Index /> */}
-      <MyNotes />
-      {/* <MyProfile /> */}
+      {/* <MyNotes /> */}
+      <MyProfile />
     </div>
   );
 }
