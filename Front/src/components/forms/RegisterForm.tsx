@@ -1,12 +1,22 @@
 import React, { useState } from 'react';
 import { UserIcon, UserCircleIcon, EnvelopeIcon, CalendarIcon, LockClosedIcon, KeyIcon } from '@heroicons/react/24/solid';
-
+import { useNavigate } from 'react-router-dom';
 
 interface RegisterFormProps {
   onError: (message: string) => void;
 }
 
 const RegisterForm: React.FC<RegisterFormProps> = ({ onError }) => {
+  const navigate = useNavigate();
+
+  const handleIndex = () => {
+      navigate('/index');
+  }
+
+  const handleLogin = () => {
+    navigate('/');
+  }
+
   const [formData, setFormData] = useState({
     username: '',
     name: '',
@@ -147,12 +157,13 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onError }) => {
         <button
           type="submit"
           className="w-full py-2 bg-[#F9A8D4] text-white rounded-lg hover:bg-[#F472B6] transition-all transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#F472B6] focus:ring-offset-2 text-sm"
+          onClick={handleIndex}
         >
           Regístrate
         </button>
       </form>
       <p className="mt-4 text-center text-gray-600 text-sm">
-        ¿Ya tienes una cuenta? <a href="/login" className="text-blue-500 hover:underline">Inicia sesión</a>
+        ¿Ya tienes una cuenta? <a href="#" className="text-blue-500 hover:underline" onClick={handleLogin}>Inicia sesión</a>
       </p>
     </div>
   );
