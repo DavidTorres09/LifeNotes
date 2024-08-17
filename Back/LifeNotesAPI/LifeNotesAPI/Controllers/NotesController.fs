@@ -19,7 +19,7 @@ let getNotes (user: string) =
 let getNotesLastMonth (user: string) =
     fun _ (ctx: HttpContext) ->
         task {
-            let result = "geting notes for user: " + user + " from last month"
+            let! result = getNotesLastMonth user
             return! Controller.json ctx result
         }
 

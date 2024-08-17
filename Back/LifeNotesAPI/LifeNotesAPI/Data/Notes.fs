@@ -20,8 +20,19 @@ let getNotes (user: string) =
     
 let getNotesLastMonth (user: string) =
     task {
-        return "Notes Retrieved"
-    }
+        let today = DateTime.UtcNow
+        let oneMonthAgo = today.AddMonths(-1)
+
+        let collection = database.GetCollection<Note>("Notes")
+        let filter = Builders<Note>.Filter.And([
+            Builders<Note>.Filter.Eq("user", user)
+            Builders<Note>.Filter.Gte("date", oneMonthAgo)
+            Builders<Note>.Filter.Lte("date", today)
+        ])
+        let! result = collection.Find(filter).ToListAsync() |> Async.AwaitTask
+        let notes = result |> List.ofSeq
+        return notes
+    } |> Async.AwaitTask
     
 let addNote (payload: Note) =
     task {
