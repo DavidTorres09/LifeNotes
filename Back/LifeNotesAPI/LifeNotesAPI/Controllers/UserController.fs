@@ -9,8 +9,15 @@ open LifeNotesAPI.Data.User
 let login =
     fun _ (ctx: HttpContext) ->
         task {
-            let result = "login"
-            return! Controller.json ctx result
+            let! payload = ctx.BindJsonAsync<LoginRequest>() |> Async.AwaitTask
+            let! result = userLogin payload |> Async.AwaitTask
+            match result with
+            | "User Logged In" ->
+                ctx.SetStatusCode 200
+                return! Controller.json ctx result
+            | _ ->
+                ctx.SetStatusCode 400
+                return! Controller.json ctx result
         }
         
 let register =

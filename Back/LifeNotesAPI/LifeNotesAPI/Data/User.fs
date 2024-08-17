@@ -30,7 +30,13 @@ let registerUser (payload: User) =
                 return $"An error occurred: {ex}"
     }
 
-let userLogin (user: string) (password: string) =
+let userLogin (payload: LoginRequest) =
     task {
-        return "User Logged In"
+        let collection = database.GetCollection<User>("Users")
+        let filter = Builders<User>.Filter.Eq("user", payload.user) &&& Builders<User>.Filter.Eq("password", payload.password)
+        let! filtered = collection.Find(filter).ToListAsync() |> Async.AwaitTask
+        if filtered.Count = 0 then
+            return "User not found"
+        else
+            return "User Logged In"
     }
