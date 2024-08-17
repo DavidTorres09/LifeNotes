@@ -5,6 +5,8 @@
         <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
     </PropertyGroup>
     <ItemGroup>
+        <Compile Include="Types\UserTypes.fs" />
+        <Compile Include="Types\NotesTypes.fs" />
         <Compile Include="Data\MongoDB.fs" />
         <Compile Include="Data\Notes.fs" />
         <Compile Include="Data\User.fs" />

@@ -10,7 +10,7 @@ open System.Reflection
 [<assembly: System.Reflection.AssemblyCompanyAttribute("LifeNotesAPI")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
-[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+857f020083e4966e334c0b06a47351b5fe43ead0")>]
+[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8d616de75cf0f35671909adfb5b41851ae99e871")>]
 [<assembly: System.Reflection.AssemblyProductAttribute("LifeNotesAPI")>]
 [<assembly: System.Reflection.AssemblyTitleAttribute("LifeNotesAPI")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]
