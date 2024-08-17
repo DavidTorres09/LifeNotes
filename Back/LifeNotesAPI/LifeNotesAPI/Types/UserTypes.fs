@@ -1,15 +1,17 @@
 module LifeNotesAPI.Types.UserTypes
 
-type LoginRequest = {
-    user: string
-    password: string
-}
 
-type RegisterRequest = {
+type User = {
+    id: string
     user: string
     name: string
     email: string
     age: int
+    password: string
+}
+
+type LoginRequest = {
+    user: string
     password: string
 }
 
