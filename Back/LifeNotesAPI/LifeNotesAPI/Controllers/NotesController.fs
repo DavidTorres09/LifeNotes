@@ -1,15 +1,15 @@
 module LifeNotesAPI.Controllers.NotesController
 open Microsoft.AspNetCore.Http
-open Giraffe
 open Saturn
 open Microsoft.FSharp.Control
 open Microsoft.FSharp.Core
+open LifeNotesAPI.Data.Notes
 
 
 let getNotes (user: string) =
     fun _ (ctx: HttpContext) ->
         task {
-            let result = "geting notes for user: " + user
+            let! result = getNotes user
             return! Controller.json ctx result
         }
 
