@@ -51,7 +51,10 @@ let addNote (payload: Note) =
         return "Note Added"
     } |> Async.AwaitTask
 
-let deleteNote (user: string) (note: string) =
+let deleteNote (idNote: string) =
     task {
+        let collection = database.GetCollection<Note>("Notes")
+        let filter = Builders<Note>.Filter.Eq("id", idNote)
+        do! collection.DeleteOneAsync(filter) |> Async.AwaitTask |> Async.Ignore
         return "Note Deleted"
-    }
+    } |> Async.AwaitTask

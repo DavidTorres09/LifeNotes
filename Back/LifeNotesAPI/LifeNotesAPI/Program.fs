@@ -16,7 +16,7 @@ let apiRouter =
                 getf "/get/%s" getNotes
                 getf "/getlastmonth/%s" getNotesLastMonth
                 post "/addnote" addNote
-                post "/deletenote" deleteNote
+                deletef "/deletenote/%s" deleteNote
             }
         )
     }

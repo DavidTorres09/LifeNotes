@@ -38,9 +38,16 @@ let addNote =
                 return! Controller.json ctx failure
         }
         
-let deleteNote =
+let deleteNote (idNote:string) =
     fun _ (ctx: HttpContext) ->
         task {
-            let result = "deleting note for user:"
-            return! Controller.json ctx result
+            let! result = deleteNote idNote
+            match result with
+            | "Note Deleted" ->
+                ctx.SetStatusCode 200
+                return! Controller.json ctx result
+            | _ ->
+                ctx.SetStatusCode 400
+                let failure = "Note not deleted"
+                return! Controller.json ctx failure
         }
