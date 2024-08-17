@@ -1,4 +1,5 @@
 module LifeNotesAPI.Data.Notes
+open System
 open LifeNotesAPI.Data.MongoDB
 open LifeNotesAPI.Types.NotesTypes
 open MongoDB.Driver
@@ -22,10 +23,22 @@ let getNotesLastMonth (user: string) =
         return "Notes Retrieved"
     }
     
-let addNote (user: string) (note: string) =
+let addNote (payload: Note) =
     task {
+        let collection = database.GetCollection<Note>("Notes")
+        let newNote =
+            {
+                id = ObjectId.GenerateNewId().ToString()
+                user = payload.user
+                title = payload.title
+                date = payload.date
+                category = payload.category
+                mood = payload.mood
+                content = payload.content
+            }
+        do! collection.InsertOneAsync(newNote) |> Async.AwaitTask |> Async.Ignore
         return "Note Added"
-    }
+    } |> Async.AwaitTask
 
 let deleteNote (user: string) (note: string) =
     task {

@@ -10,7 +10,7 @@ let login =
     fun _ (ctx: HttpContext) ->
         task {
             let! payload = ctx.BindJsonAsync<LoginRequest>() |> Async.AwaitTask
-            let! result = userLogin payload |> Async.AwaitTask
+            let! result = userLogin payload
             match result with
             | "User Logged In" ->
                 ctx.SetStatusCode 200
@@ -23,8 +23,8 @@ let login =
 let register =
     fun _ (ctx: HttpContext) ->
         task {
-             let! payload = ctx.BindJsonAsync<User>()
-             let! result =  registerUser payload |> Async.AwaitTask
+             let! payload = ctx.BindJsonAsync<User>() |> Async.AwaitTask
+             let! result =  registerUser payload
              match result with
              | "User Registered" ->
                     ctx.SetStatusCode 200

@@ -28,7 +28,7 @@ let registerUser (payload: User) =
                 return "User Registered"
             with ex ->
                 return $"An error occurred: {ex}"
-    }
+    } |> Async.AwaitTask
 
 let userLogin (payload: LoginRequest) =
     task {
@@ -39,4 +39,4 @@ let userLogin (payload: LoginRequest) =
             return "User not found"
         else
             return "User Logged In"
-    }
+    } |> Async.AwaitTask
