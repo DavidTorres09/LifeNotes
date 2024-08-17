@@ -1,10 +1,20 @@
 module LifeNotesAPI.Controllers.UserController
 open Microsoft.AspNetCore.Http
 open Giraffe
-open LifeNotesAPI.Data.User
+open Saturn
+open Microsoft.FSharp.Control
+open Microsoft.FSharp.Core
 
 let login =
-    fun (next: HttpFunc) (ctx: HttpContext) ->
+    fun _ (ctx: HttpContext) ->
         task {
-            return! next ctx  
+            let result = "login"
+            return! Controller.json ctx  result
+        }
+        
+let register =
+    fun _ (ctx: HttpContext) ->
+        task {
+            let result = "register"
+            return! Controller.json ctx  result
         }
