@@ -1,33 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Universidad\\LifeNotes\\Back\\LifeNotesAPI\\LifeNotesAPI\\LifeNotesAPI.fsproj": {}
+    "/Users/angel.torres/Documents/GitHub/LifeNotes/Back/LifeNotesAPI/LifeNotesAPI/LifeNotesAPI.fsproj": {}
   },
   "projects": {
-    "D:\\Universidad\\LifeNotes\\Back\\LifeNotesAPI\\LifeNotesAPI\\LifeNotesAPI.fsproj": {
+    "/Users/angel.torres/Documents/GitHub/LifeNotes/Back/LifeNotesAPI/LifeNotesAPI/LifeNotesAPI.fsproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Universidad\\LifeNotes\\Back\\LifeNotesAPI\\LifeNotesAPI\\LifeNotesAPI.fsproj",
+        "projectUniqueName": "/Users/angel.torres/Documents/GitHub/LifeNotes/Back/LifeNotesAPI/LifeNotesAPI/LifeNotesAPI.fsproj",
         "projectName": "LifeNotesAPI",
-        "projectPath": "D:\\Universidad\\LifeNotes\\Back\\LifeNotesAPI\\LifeNotesAPI\\LifeNotesAPI.fsproj",
-        "packagesPath": "C:\\Users\\angel\\.nuget\\packages\\",
-        "outputPath": "D:\\Universidad\\LifeNotes\\Back\\LifeNotesAPI\\LifeNotesAPI\\obj\\",
+        "projectPath": "/Users/angel.torres/Documents/GitHub/LifeNotes/Back/LifeNotesAPI/LifeNotesAPI/LifeNotesAPI.fsproj",
+        "packagesPath": "/Users/angel.torres/.nuget/packages/",
+        "outputPath": "/Users/angel.torres/Documents/GitHub/LifeNotes/Back/LifeNotesAPI/LifeNotesAPI/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "D:\\Visual Studio SDK\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\angel\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/angel.torres/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
-          "C:\\Program Files\\dotnet\\sdk\\8.0.300\\FSharp\\library-packs": {},
+          "/usr/local/share/dotnet/sdk/8.0.301/FSharp/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -45,6 +38,31 @@
               "include": "Runtime, Compile, Build, Native, Analyzers, BuildTransitive",
               "target": "Package",
               "version": "[8.0.300, )",
+              "generatePathProperty": true
+            },
+            "Giraffe": {
+              "target": "Package",
+              "version": "[6.4.0, )",
+              "generatePathProperty": true
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[8.0.0, )",
+              "generatePathProperty": true
+            },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.26.0, )",
+              "generatePathProperty": true
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )",
+              "generatePathProperty": true
+            },
+            "Saturn": {
+              "target": "Package",
+              "version": "[0.17.0, )",
               "generatePathProperty": true
             }
           },
@@ -67,7 +85,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.301/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

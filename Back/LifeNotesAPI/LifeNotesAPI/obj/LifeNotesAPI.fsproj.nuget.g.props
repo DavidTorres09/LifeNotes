@@ -4,16 +4,22 @@
     <RestoreSuccess Condition=" '$(RestoreSuccess)' == '' ">True</RestoreSuccess>
     <RestoreTool Condition=" '$(RestoreTool)' == '' ">NuGet</RestoreTool>
     <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">$(MSBuildThisFileDirectory)project.assets.json</ProjectAssetsFile>
-    <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">$(UserProfile)\.nuget\packages\</NuGetPackageRoot>
-    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">C:\Users\angel\.nuget\packages\;D:\Visual Studio SDK\NuGetPackages</NuGetPackageFolders>
+    <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">/Users/angel.torres/.nuget/packages/</NuGetPackageRoot>
+    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">/Users/angel.torres/.nuget/packages/</NuGetPackageFolders>
     <NuGetProjectStyle Condition=" '$(NuGetProjectStyle)' == '' ">PackageReference</NuGetProjectStyle>
     <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">6.9.1</NuGetToolVersion>
   </PropertyGroup>
   <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <SourceRoot Include="C:\Users\angel\.nuget\packages\" />
-    <SourceRoot Include="D:\Visual Studio SDK\NuGetPackages\" />
+    <SourceRoot Include="/Users/angel.torres/.nuget/packages/" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <PkgFSharp_Core Condition=" '$(PkgFSharp_Core)' == '' ">C:\Users\angel\.nuget\packages\fsharp.core\8.0.300</PkgFSharp_Core>
+    <PkgNewtonsoft_Json Condition=" '$(PkgNewtonsoft_Json)' == '' ">/Users/angel.torres/.nuget/packages/newtonsoft.json/13.0.3</PkgNewtonsoft_Json>
+    <PkgFSharp_Core Condition=" '$(PkgFSharp_Core)' == '' ">/Users/angel.torres/.nuget/packages/fsharp.core/8.0.300</PkgFSharp_Core>
+    <PkgGiraffe Condition=" '$(PkgGiraffe)' == '' ">/Users/angel.torres/.nuget/packages/giraffe/6.4.0</PkgGiraffe>
+    <PkgSaturn Condition=" '$(PkgSaturn)' == '' ">/Users/angel.torres/.nuget/packages/saturn/0.17.0</PkgSaturn>
+    <PkgAWSSDK_Core Condition=" '$(PkgAWSSDK_Core)' == '' ">/Users/angel.torres/.nuget/packages/awssdk.core/3.7.100.14</PkgAWSSDK_Core>
+    <PkgAWSSDK_SecurityToken Condition=" '$(PkgAWSSDK_SecurityToken)' == '' ">/Users/angel.torres/.nuget/packages/awssdk.securitytoken/3.7.100.14</PkgAWSSDK_SecurityToken>
+    <PkgMongoDB_Driver Condition=" '$(PkgMongoDB_Driver)' == '' ">/Users/angel.torres/.nuget/packages/mongodb.driver/2.26.0</PkgMongoDB_Driver>
+    <PkgMicrosoft_Extensions_Configuration_Json Condition=" '$(PkgMicrosoft_Extensions_Configuration_Json)' == '' ">/Users/angel.torres/.nuget/packages/microsoft.extensions.configuration.json/8.0.0</PkgMicrosoft_Extensions_Configuration_Json>
   </PropertyGroup>
 </Project>

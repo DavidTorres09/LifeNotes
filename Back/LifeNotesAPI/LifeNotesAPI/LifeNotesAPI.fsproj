@@ -4,18 +4,21 @@
         <TargetFramework>net8.0</TargetFramework>
         <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
     </PropertyGroup>
-
     <ItemGroup>
-        <Compile Include="WeatherForecast.fs"/>
-        <Compile Include="Controllers/WeatherForecastController.fs"/>
+        <Compile Include="Data\MongoDB.fs" />
+        <Compile Include="Data\Notes.fs" />
+        <Compile Include="Data\User.fs" />
+        <Compile Include="Controllers\UserController.fs" />
+        <Compile Include="Controllers\NotesController.fs" />
         <Compile Include="Program.fs"/>
     </ItemGroup>
-
+    
     <ItemGroup>
-      <Content Include="..\.dockerignore">
-        <Link>.dockerignore</Link>
-      </Content>
-      <Content Include="Dockerfile" />
+      <PackageReference Include="Giraffe" Version="6.4.0" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
+      <PackageReference Include="MongoDB.Driver" Version="2.26.0" />
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+      <PackageReference Include="Saturn" Version="0.17.0" />
     </ItemGroup>
 
 </Project>
