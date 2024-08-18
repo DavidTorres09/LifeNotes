@@ -10,14 +10,14 @@ let login =
     fun _ (ctx: HttpContext) ->
         task {
             let! payload = ctx.BindJsonAsync<LoginRequest>() |> Async.AwaitTask
-            let! result = userLogin payload
-            match result with
-            | "User Logged In" ->
+            let! resultOption = userLogin payload
+            match resultOption with
+            | Some user ->
                 ctx.SetStatusCode 200
-                return! Controller.json ctx result
-            | _ ->
+                return! Controller.json ctx user
+            | None ->
                 ctx.SetStatusCode 400
-                return! Controller.json ctx result
+                return! Controller.json ctx "User not found"
         }
         
 let register =

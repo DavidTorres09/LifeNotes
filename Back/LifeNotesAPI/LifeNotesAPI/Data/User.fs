@@ -36,7 +36,10 @@ let userLogin (payload: LoginRequest) =
         let filter = Builders<User>.Filter.Eq("user", payload.user) &&& Builders<User>.Filter.Eq("password", payload.password)
         let! filtered = collection.Find(filter).ToListAsync() |> Async.AwaitTask
         if filtered.Count = 0 then
-            return "User not found"
+            return None
         else
-            return "User Logged In"
+            let userOption = filtered |> List.ofSeq |> List.tryHead
+            match userOption with
+            | Some user -> return Some user
+            | None -> return None
     } |> Async.AwaitTask
