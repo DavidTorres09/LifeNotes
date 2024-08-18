@@ -9,22 +9,20 @@ interface RegisterFormProps {
 const RegisterForm: React.FC<RegisterFormProps> = ({ onError }) => {
   const navigate = useNavigate();
 
-  const handleIndex = () => {
-      navigate('/index');
-  }
-
   const handleLogin = () => {
     navigate('/');
-  }
+  };
 
   const [formData, setFormData] = useState({
-    username: '',
+    user: '',
     name: '',
     email: '',
     age: '',
     password: '',
     confirmPassword: '',
   });
+
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -34,13 +32,13 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onError }) => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.email.includes('@')) {
       onError('Por favor, ingresa un correo electrónico válido.');
       return;
     }
-    if (formData.username.length < 3) {
+    if (formData.user.length < 3) {
       onError('El nombre de usuario debe tener al menos 3 caracteres.');
       return;
     }
@@ -56,6 +54,36 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onError }) => {
       onError('Las contraseñas no coinciden.');
       return;
     }
+
+    setLoading(true);
+    try {
+      const response = await fetch('http://localhost:5023/api/lifenotes/user/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          user: formData.user,
+          name: formData.name,
+          email: formData.email,
+          age: formData.age,
+          password: formData.password,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Error en el registro.');
+      }
+
+      const data = await response.json();
+      console.log('Registro exitoso:', data);
+      handleLogin();
+    } catch (error) {
+      console.error('Error en el registro:', error);
+      onError('Error en el registro. Inténtalo de nuevo.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -65,12 +93,12 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onError }) => {
         <div className="flex items-center space-x-2">
           <UserIcon className="w-5 h-5 mt-5 text-[#6D4C41]" />
           <div className="flex-1">
-            <label htmlFor="username" className="block text-sm mb-1 text-white">Usuario</label>
+            <label htmlFor="user" className="block text-sm mb-1 text-white">Usuario</label>
             <input
               type="text"
-              id="username"
-              name="username"
-              value={formData.username}
+              id="user"
+              name="user"
+              value={formData.user}
               onChange={handleChange}
               className="w-full p-2 border rounded-lg border-[#F1A6A1] text-sm focus:border-[#FFABAB] focus:ring-0 transition-all"
               required
@@ -157,9 +185,8 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onError }) => {
         <button
           type="submit"
           className="w-full py-2 bg-[#F9A8D4] text-white rounded-lg hover:bg-[#F472B6] transition-all transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#F472B6] focus:ring-offset-2 text-sm"
-          onClick={handleIndex}
         >
-          Regístrate
+          {loading ? 'Registrando...' : 'Regístrate'}
         </button>
       </form>
       <p className="mt-4 text-center text-gray-600 text-sm">
