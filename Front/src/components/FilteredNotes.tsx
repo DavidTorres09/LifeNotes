@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios'; // Asegúrate de tener axios instalado
 import '../styles/FilteredNotes.css';
 import { getCompletions } from '../servicesIA/getCompletions';
 
@@ -7,169 +8,26 @@ interface Note {
   date: string;
   category: string;
   mood: string;
-  description: string;
+  content: string;
 }
 
-const sampleNotes: Note[] = [
-    {
-      title: "Nota de Ejemplo 1",
-      date: "10/08/2024 14:30",
-      category: "Trabajo",
-      mood: "happy",
-      description: "Descripción de la nota 1: Hoy he tenido una reunión muy productiva.",
-    },
-    {
-      title: "Nota de Ejemplo 2",
-      date: "11/08/2024 09:15",
-      category: "Personal",
-      mood: "veryAngry",
-      description: "Descripción de la nota 2: Me he sentido frustrado por el tráfico esta mañana.",
-    },
-    {
-      title: "Nota de Ejemplo 3",
-      date: "12/08/2024 18:00",
-      category: "Estudio",
-      mood: "confused",
-      description: "Descripción de la nota 3: No entiendo bien el tema de matemáticas que estamos viendo.",
-    },
-    {
-      title: "Nota de Ejemplo 4",
-      date: "13/08/2024 20:45",
-      category: "Hobbies",
-      mood: "excited",
-      description: "Descripción de la nota 4: Acabo de terminar un proyecto de arte que me ha hecho sentir muy satisfecho.",
-    },
-    {
-      title: "Nota de Ejemplo 5",
-      date: "14/08/2024 12:30",
-      category: "Otros",
-      mood: "neutral",
-      description: "Descripción de la nota 5: Día tranquilo sin eventos destacados.",
-    },
-    {
-      title: "Nota de Ejemplo 6",
-      date: "15/08/2024 10:00",
-      category: "Trabajo",
-      mood: "slightlyHappy",
-      description: "Descripción de la nota 6: La reunión de equipo salió bien y el proyecto avanza.",
-    },
-    {
-      title: "Nota de Ejemplo 7",
-      date: "16/08/2024 15:30",
-      category: "Estudio",
-      mood: "happy",
-      description: "Descripción de la nota 7: Comprendí el concepto complicado en clase hoy.",
-    },
-    {
-      title: "Nota de Ejemplo 8",
-      date: "17/08/2024 11:45",
-      category: "Personal",
-      mood: "confused",
-      description: "Descripción de la nota 8: No estoy seguro de cómo proceder con el plan de fin de semana.",
-    },
-    {
-      title: "Nota de Ejemplo 9",
-      date: "18/08/2024 08:30",
-      category: "Hobbies",
-      mood: "overjoyed",
-      description: "Descripción de la nota 9: Empecé un nuevo proyecto de jardinería que me entusiasma mucho.",
-    },
-    {
-      title: "Nota de Ejemplo 10",
-      date: "19/08/2024 14:00",
-      category: "Otros",
-      mood: "angry",
-      description: "Descripción de la nota 10: Hubo un problema con la entrega del pedido y estoy molesto.",
-    },
-    {
-      title: "Nota de Ejemplo 11",
-      date: "20/08/2024 19:30",
-      category: "Trabajo",
-      mood: "frustrated",
-      description: "Descripción de la nota 11: El cliente cambió de opinión a última hora y eso complicó todo.",
-    },
-    {
-      title: "Nota de Ejemplo 12",
-      date: "21/08/2024 16:15",
-      category: "Estudio",
-      mood: "veryHappy",
-      description: "Descripción de la nota 12: Aprobé el examen con una nota excelente.",
-    },
-    {
-      title: "Nota de Ejemplo 13",
-      date: "22/08/2024 13:00",
-      category: "Hobbies",
-      mood: "neutral",
-      description: "Descripción de la nota 13: Hice un dibujo nuevo, pero no estoy seguro de qué pensar al respecto.",
-    },
-    {
-      title: "Nota de Ejemplo 14",
-      date: "23/08/2024 17:45",
-      category: "Personal",
-      mood: "excited",
-      description: "Descripción de la nota 14: Planeé un viaje para el fin de semana y estoy muy emocionado.",
-    },
-    {
-      title: "Nota de Ejemplo 15",
-      date: "24/08/2024 09:00",
-      category: "Trabajo",
-      mood: "veryAngry",
-      description: "Descripción de la nota 15: Tuve un desacuerdo importante con un colega y estoy muy enfadado.",
-    },
-    {
-      title: "Nota de Ejemplo 16",
-      date: "25/08/2024 12:30",
-      category: "Otros",
-      mood: "slightlyHappy",
-      description: "Descripción de la nota 16: Recibí una buena noticia que mejoró mi día.",
-    },
-    {
-      title: "Nota de Ejemplo 17",
-      date: "26/08/2024 18:00",
-      category: "Estudio",
-      mood: "happy",
-      description: "Descripción de la nota 17: Terminé un proyecto de investigación que me había costado mucho tiempo.",
-    },
-    {
-      title: "Nota de Ejemplo 18",
-      date: "27/08/2024 10:15",
-      category: "Hobbies",
-      mood: "confused",
-      description: "Descripción de la nota 18: No estoy seguro de cómo avanzar en el nuevo proyecto de manualidades.",
-    },
-    {
-      title: "Nota de Ejemplo 19",
-      date: "28/08/2024 14:30",
-      category: "Personal",
-      mood: "angry",
-      description: "Descripción de la nota 19: Me sentí decepcionado por una situación familiar complicada.",
-    },
-    {
-      title: "Nota de Ejemplo 20",
-      date: "29/08/2024 20:00",
-      category: "Trabajo",
-      mood: "frustrated",
-      description: "Descripción de la nota 20: La carga de trabajo ha sido muy alta y me siento agotado.",
-    },
-  ];  
-
 const MOODS = [
-  { mood: "veryAngry", emoji: "😡", description: "Muy Enfadad@" },
-  { mood: "angry", emoji: "😠", description: "Enfadad@" },
-  { mood: "frustrated", emoji: "😤", description: "Frustrad@" },
-  { mood: "confused", emoji: "😕", description: "Confundid@" },
+  { mood: "muyEnfadado", emoji: "😡", description: "Muy Enfadado" },
+  { mood: "enfadado", emoji: "😠", description: "Enfadado" },
+  { mood: "frustrado", emoji: "😤", description: "Frustrado" },
+  { mood: "confundido", emoji: "😕", description: "Confundido" },
   { mood: "neutral", emoji: "😐", description: "Neutral" },
-  { mood: "slightlyHappy", emoji: "🙂", description: "Algo Feliz" },
-  { mood: "happy", emoji: "😊", description: "Feliz" },
-  { mood: "veryHappy", emoji: "😁", description: "Muy Feliz" },
-  { mood: "excited", emoji: "😃", description: "Entusiasmad@" },
-  { mood: "overjoyed", emoji: "😍", description: "Extasiad@" },
+  { mood: "algoFeliz", emoji: "🙂", description: "Algo Feliz" },
+  { mood: "feliz", emoji: "😊", description: "Feliz" },
+  { mood: "muyFeliz", emoji: "😁", description: "Muy Feliz" },
+  { mood: "entusiasmado", emoji: "😃", description: "Entusiasmado" },
+  { mood: "extasiado", emoji: "😍", description: "Extasiado" },
 ];
 
 const CATEGORIES = ["Trabajo", "Personal", "Estudio", "Hobbies", "Otros"];
 
-
 const FilteredNotes: React.FC = () => {
+  const [notes, setNotes] = useState<Note[]>([]);
   const [categoryFilter, setCategoryFilter] = useState<string>('');
   const [moodFilter, setMoodFilter] = useState<string>('');
   const [dateFilter, setDateFilter] = useState<string>('');
@@ -178,6 +36,26 @@ const FilteredNotes: React.FC = () => {
   const [selectedNote, setSelectedNote] = useState<Note | null>(null);
   const [advice, setAdvice] = useState<string | null>(null);
   const [loadingAdvice, setLoadingAdvice] = useState<boolean>(false);
+
+  useEffect(() => {
+    const fetchNotes = async () => {
+      try {
+        const user = sessionStorage.getItem('user');
+        if (!user) {
+          console.error('No user found in sessionStorage');
+          return;
+        }
+
+        const url = `http://localhost:5023/api/lifenotes/notes/get/${user}`;
+        const response = await axios.get(url);
+        setNotes(response.data);
+      } catch (error) {
+        console.error('Error fetching notes:', error);
+      }
+    };
+
+    fetchNotes();
+  }, []);
 
   const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setCategoryFilter(e.target.value);
@@ -202,20 +80,20 @@ const FilteredNotes: React.FC = () => {
   const handleGetAdvice = (note: Note) => {
     setSelectedNote(note);
     setShowAdviceOptions(note.title);
-    setAdvice(null); // Resetear el consejo cuando se selecciona una nueva nota
-    setLoadingAdvice(false); // Resetear estado de carga al solicitar un nuevo consejo
+    setAdvice(null);
+    setLoadingAdvice(false);
   };
 
   const handleAdviceTypeClick = async (type: string) => {
     if (selectedNote) {
-      setLoadingAdvice(true); // Mostrar mensaje de carga
-      const response = await getCompletions(type, selectedNote.description, selectedNote.mood);
+      setLoadingAdvice(true); 
+      const response = await getCompletions(type, selectedNote.content, selectedNote.mood);
       setAdvice(response);
-      setLoadingAdvice(false); // Ocultar mensaje de carga
+      setLoadingAdvice(false);
     }
   };
 
-  const filteredNotes = sampleNotes.filter(note =>
+  const filteredNotes = notes.filter(note =>
     (categoryFilter ? note.category === categoryFilter : true) &&
     (moodFilter ? note.mood === moodFilter : true) &&
     (dateFilter ? note.date.includes(dateFilter) : true) &&
@@ -225,8 +103,20 @@ const FilteredNotes: React.FC = () => {
   const closeAdviceOptions = () => {
     setShowAdviceOptions(null);
     setSelectedNote(null);
-    setAdvice(null); // Limpiar consejo cuando se cierran las opciones
+    setAdvice(null);
   };
+
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('es-ES', {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+  };
+  
 
   return (
     <div className="note-filter-container mt-5 mb-10">
@@ -273,77 +163,73 @@ const FilteredNotes: React.FC = () => {
       </div>
 
       <div className="notes-container">
-  {filteredNotes.length > 0 ? (
-    filteredNotes.map((note, index) => (
-      <div key={index} className="note-item">
-        <div className='note-header'>
-          <h3 className='title-note'>{note.title}</h3>
-          <p className="date">{note.date}</p>
-        </div>
+        {filteredNotes.length > 0 ? (
+          filteredNotes.map((note, index) => (
+            <div key={index} className="note-item">
+              <div className='note-header'>
+                <h3 className='title-note'>{note.title}</h3>
+                <p className="date">{formatDate(note.date)}</p>
+              </div>
 
-        <p><strong>Categoría:</strong> {note.category}</p>
-        <p><strong>Estado de Ánimo:</strong> {note.mood}</p>
-        <p><strong>Descripción:</strong> {note.description}</p>
-        
-        <div className="note-actions flex justify-between items-center">
-          <button onClick={() => handleDeleteNote(index)} className="delete-button">
-            🗑️ Eliminar
-          </button>
-          <button onClick={() => handleGetAdvice(note)} className="advice-button">
-            💬 Obtener Consejo
-          </button>
-        </div>
-        
-        {showAdviceOptions === note.title && (
-          <div className="advice-section">
-            <div className="advice-bubbles">
-              <div className="advice-bubble" onClick={() => handleAdviceTypeClick('motivacional')}>
-                💡 Consejo Motivacional
+              <p><strong>Categoría:</strong> {note.category}</p>
+              <p><strong>Estado de Ánimo:</strong> {note.mood}</p>
+              <p><strong>Descripción:</strong> {note.content}</p>
+
+              <div className="note-actions flex justify-between items-center">
+                <button onClick={() => handleDeleteNote(index)} className="delete-button">
+                  🗑️ Eliminar
+                </button>
+                <button onClick={() => handleGetAdvice(note)} className="advice-button">
+                  💬 Obtener Consejo
+                </button>
               </div>
-              <div className="advice-bubble" onClick={() => handleAdviceTypeClick('amigable')}>
-                🗨️ Consejo Amigable
-              </div>
-              <div className="advice-bubble" onClick={() => handleAdviceTypeClick('practico')}>
-                🛠️ Consejo Práctico
-              </div>
-              <div className="advice-bubble" onClick={() => handleAdviceTypeClick('inspirador')}>
-                ✨ Consejo Inspirador
-              </div>
-              <button className="close-button" onClick={closeAdviceOptions}>
-                ❌
-              </button>
-            </div>
-            <div className="advice-response-container">
-              {loadingAdvice ? (
-                <div className="advice-response">
-                  <p>Analizando...</p>
-                </div>
-              ) : (
-                advice && (
-                  <div className="advice-response">
-                    {advice.split('\n').map((line, index) => (
-                      <p key={index} className="advice-response-text">
-                        {line}
-                      </p>
-                    ))}
+
+              {showAdviceOptions === note.title && (
+                <div className="advice-section">
+                  <div className="advice-bubbles">
+                    <div className="advice-bubble" onClick={() => handleAdviceTypeClick('motivacional')}>
+                      💡 Consejo Motivacional
+                    </div>
+                    <div className="advice-bubble" onClick={() => handleAdviceTypeClick('amigable')}>
+                      🗨️ Consejo Amigable
+                    </div>
+                    <div className="advice-bubble" onClick={() => handleAdviceTypeClick('practico')}>
+                      🛠️ Consejo Práctico
+                    </div>
+                    <div className="advice-bubble" onClick={() => handleAdviceTypeClick('inspirador')}>
+                      ✨ Consejo Inspirador
+                    </div>
+                    <button className="close-button" onClick={closeAdviceOptions}>
+                      ❌
+                    </button>
                   </div>
-                )
+                  <div className="advice-response-container">
+                    {loadingAdvice ? (
+                      <div className="advice-response">
+                        <p>Analizando...</p>
+                      </div>
+                    ) : (
+                      advice && (
+                        <div className="advice-response">
+                          {advice.split('\n').map((line, index) => (
+                            <p key={index} className="advice-response-text">
+                              {line}
+                            </p>
+                          ))}
+                        </div>
+                      )
+                    )}
+                  </div>
+                </div>
               )}
             </div>
-          </div>
+          ))
+        ) : (
+          <p>No se encontraron notas.</p>
         )}
       </div>
-    ))
-  ) : (
-    <p>No se encontraron notas.</p>
-  )}
-</div>
-
-
-
     </div>
   );
 };
-  
 
 export default FilteredNotes;

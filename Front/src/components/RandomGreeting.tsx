@@ -34,7 +34,7 @@ const getRandomColor = () => {
     return pastelColors[randomIndex];
   };
 
-const WelcomeMessage: React.FC<WelcomeMessageProps> = () => {
+const WelcomeMessage: React.FC = () => {
   const imageSrc = `/assets/greeting/${getRandomImage()}`;
   const borderColor = getRandomColor();
 
