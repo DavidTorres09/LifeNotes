@@ -1,0 +1,103 @@
+.user-profile {
+    padding: 24px;
+    width: 100%;
+    max-width: 700px;
+    background: rgba(255, 255, 255, 0.3); 
+    backdrop-filter: blur(15px); 
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+  }
+  
+  .user-profile h2 {
+    font-size: 1.5rem; 
+    font-weight: 700;
+    margin-bottom: 24px;
+    text-align: center;
+    color: #FF69B4;
+  }
+  
+  .user-profile .section {
+    margin-bottom: 24px; 
+  }
+  
+  .user-profile .section .flex {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.2); 
+    backdrop-filter: blur(10px); 
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: background 0.3s, box-shadow 0.3s; 
+  }
+  
+  .user-profile .section .flex:hover {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .user-profile .section .flex .icon {
+    width: 24px;
+    height: 24px;
+    color: #FF69B4; 
+  }
+  
+  .user-profile .section .flex div {
+    margin-left: 12px;
+  }
+  
+  .user-profile .section .flex p {
+    font-size: 0.9rem; 
+    color: #333; 
+  }
+  
+  .user-profile .analysis-button {
+    padding: 10px 20px;
+    background: #FF69B4; 
+    color: white;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s, box-shadow 0.3s; 
+    backdrop-filter: blur(8px);
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+  
+  .user-profile .analysis-button:hover {
+    background: #FF1493; 
+    transform: scale(1.05);
+  }
+  
+  .user-profile .analysis-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 20, 147, 0.5); 
+  }
+
+  .animate-fadeInUp {
+    animation: fadeInUp 0.6s ease-out;
+  }
+
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  

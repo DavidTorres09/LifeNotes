@@ -87,7 +87,7 @@ const NoteWriter: React.FC = () => {
     const noteData = {
       user,
       title,
-      date: getISODate(), // Usa el formato ISO 8601 para enviar al backend
+      date: getISODate(),
       category,
       mood,
       content: message
@@ -98,12 +98,11 @@ const NoteWriter: React.FC = () => {
 
       if (response.status === 200) {
         alert('Nota guardada exitosamente');
-        // Limpiar campos
         setTitle('');
         setCategory('');
         setMood(null);
         setMessage('');
-        setCurrentDateTime(getDateAndHour()); // Reiniciar fecha y hora si es necesario
+        setCurrentDateTime(getDateAndHour());
       } else {
         console.error('Error al guardar la nota:', response.statusText);
       }
