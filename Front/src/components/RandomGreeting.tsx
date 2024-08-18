@@ -34,17 +34,13 @@ const getRandomColor = () => {
     return pastelColors[randomIndex];
   };
 
-interface WelcomeMessageProps {
-  username: string;
-}
-
-const WelcomeMessage: React.FC<WelcomeMessageProps> = ({ username }) => {
+const WelcomeMessage: React.FC<WelcomeMessageProps> = () => {
   const imageSrc = `/assets/greeting/${getRandomImage()}`;
   const borderColor = getRandomColor();
 
   return (
     <div className="welcome-container">
-      <h2 className='greeting-index'>¡Bienvenid@ {username}!</h2>
+      <h2 className='greeting-index'>¡Bienvenid@ {sessionStorage.getItem('name')}!</h2>
       <img 
         src={imageSrc} 
         alt="Imagen de bienvenida" 

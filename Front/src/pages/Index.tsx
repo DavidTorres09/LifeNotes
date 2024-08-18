@@ -10,7 +10,7 @@ export const Index: React.FC = () => {
     return (
         <div>
             <NavBarDefault />
-            <WelcomeMessage username="Usuario" />
+            <WelcomeMessage/>
             <h2 className='card-title text-center'>¿Cómo te sientes hoy?</h2>
             <NoteWriter />
             <SakuraLeaves />
