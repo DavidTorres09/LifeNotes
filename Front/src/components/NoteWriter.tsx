@@ -1,19 +1,20 @@
 import AudioRecorder from "./utils/audioRecorder";
 import React, { useState, useEffect } from "react";
+import axios from 'axios'; // Asegúrate de tener axios instalado
 import { transcribeAudio } from "../servicesIA/transcribeAudio";
 import "../styles/noteWriter.css";
 
 const MOODS = [
-  { mood: "veryAngry", emoji: "😡", description: "Muy Enfadad@" },
-  { mood: "angry", emoji: "😠", description: "Enfadad@" },
-  { mood: "frustrated", emoji: "😤", description: "Frustrad@" },
-  { mood: "confused", emoji: "😕", description: "Confundid@" },
+  { mood: "muy enfadado", emoji: "😡", description: "Muy Enfadad@" },
+  { mood: "enfadado", emoji: "😠", description: "Enfadad@" },
+  { mood: "frustrado", emoji: "😤", description: "Frustrad@" },
+  { mood: "confundido", emoji: "😕", description: "Confundid@" },
   { mood: "neutral", emoji: "😐", description: "Neutral" },
-  { mood: "slightlyHappy", emoji: "🙂", description: "Algo Feliz" },
-  { mood: "happy", emoji: "😊", description: "Feliz" },
-  { mood: "veryHappy", emoji: "😁", description: "Muy Feliz" },
-  { mood: "excited", emoji: "😃", description: "Entusiasmad@" },
-  { mood: "overjoyed", emoji: "😍", description: "Extasiad@" },
+  { mood: "algo feliz", emoji: "🙂", description: "Algo Feliz" },
+  { mood: "feliz", emoji: "😊", description: "Feliz" },
+  { mood: "muy feliz", emoji: "😁", description: "Muy Feliz" },
+  { mood: "entusiasmado", emoji: "😃", description: "Entusiasmad@" },
+  { mood: "extasiado", emoji: "😍", description: "Extasiad@" },
 ];
 
 const CATEGORIES = ["Trabajo", "Personal", "Estudio", "Hobbies", "Otros"];
@@ -24,7 +25,6 @@ const NoteWriter: React.FC = () => {
   const [mood, setMood] = useState<string | null>(null);
   const [message, setMessage] = useState<string>("");
   const [currentDateTime, setCurrentDateTime] = useState<string>(getDateAndHour());
-
   const [isUploading, setIsUploading] = useState<boolean>(false);
 
   const handleFileReady = async (file: File) => {
@@ -32,7 +32,7 @@ const NoteWriter: React.FC = () => {
     try {
       const text = await transcribeAudio(file);
       if (text) {
-        simulateTyping(text)
+        simulateTyping(text);
       }
     } catch (error) {
       console.error("Error transcribing audio:", error);
@@ -59,6 +59,11 @@ const NoteWriter: React.FC = () => {
     return `${day}/${month}/${year} ${hours}:${minutes}`;
   }
 
+  function getISODate() {
+    const date = new Date();
+    return date.toISOString();
+  }
+
   const simulateTyping = (text: string) => {
     let index = 0;
     setMessage('');
@@ -71,9 +76,40 @@ const NoteWriter: React.FC = () => {
     }, 50);
   };
 
+  const handleSave = async () => {
+    const user = sessionStorage.getItem('user');
 
-  const handleSave = () => {
-    console.log("Saving note:", { title, category, mood, message, currentDateTime });
+    if (!user) {
+      alert("No se encontró el usuario en la sesión.");
+      return;
+    }
+
+    const noteData = {
+      user,
+      title,
+      date: getISODate(), // Usa el formato ISO 8601 para enviar al backend
+      category,
+      mood,
+      content: message
+    };
+
+    try {
+      const response = await axios.post('http://localhost:5023/api/lifenotes/notes/addnote', noteData);
+
+      if (response.status === 200) {
+        alert('Nota guardada exitosamente');
+        // Limpiar campos
+        setTitle('');
+        setCategory('');
+        setMood(null);
+        setMessage('');
+        setCurrentDateTime(getDateAndHour()); // Reiniciar fecha y hora si es necesario
+      } else {
+        console.error('Error al guardar la nota:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error al guardar la nota:', error);
+    }
   };
 
   return (
