@@ -77,6 +77,11 @@ const NoteWriter: React.FC = () => {
   };
 
   const handleSave = async () => {
+    if (!mood) {
+      alert("Por favor, selecciona un estado de ánimo.");
+      return;
+    }
+
     const user = sessionStorage.getItem('user');
 
     if (!user) {
