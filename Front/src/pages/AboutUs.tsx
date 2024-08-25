@@ -81,7 +81,7 @@ return (
         height="50"
       />
       <p className="mr-4 text-lg comofuncionaText text-justify">
-      Cómo te sientes hoy? es la puerta de entrada para explorar y comprender tu estado emocional diario. Con esta función, puedes registrar tus sentimientos de manera rápida y sencilla, permitiéndote llevar un seguimiento de tus emociones a lo largo del tiempo. Es un espacio donde puedes expresar tus alegrías, preocupaciones, y cualquier otra emoción que estés experimentando. Al capturar estos momentos, no solo estás liberando tus pensamientos, sino también construyendo un mapa emocional que te ayudará a identificar patrones y obtener una perspectiva más clara sobre tu bienestar general.
+      Cómo te sientes hoy? Es la puerta de entrada para explorar y comprender tu estado emocional diario. Con esta función, puedes registrar tus sentimientos de manera rápida y sencilla, permitiéndote llevar un seguimiento de tus emociones a lo largo del tiempo. Es un espacio donde puedes expresar tus alegrías, preocupaciones, y cualquier otra emoción que estés experimentando. Al capturar estos momentos, no solo estás liberando tus pensamientos, sino también construyendo un mapa emocional que te ayudará a identificar patrones y obtener una perspectiva más clara sobre tu bienestar general.
       </p>
     </div>
     <div className="flex items-center justify-center my-8">

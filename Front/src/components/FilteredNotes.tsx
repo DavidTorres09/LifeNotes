@@ -93,12 +93,22 @@ const FilteredNotes: React.FC = () => {
     }
   };
 
-  const filteredNotes = notes.filter(note =>
-    (categoryFilter ? note.category === categoryFilter : true) &&
-    (moodFilter ? note.mood === moodFilter : true) &&
-    (dateFilter ? note.date.includes(dateFilter) : true) &&
-    (titleFilter ? note.title.toLowerCase().includes(titleFilter.toLowerCase()) : true)
-  );
+  const filteredNotes = notes.filter(note => {
+    const dateFilterStart = dateFilter ? new Date(dateFilter + 'T00:00:00') : null;
+    const dateFilterEnd = dateFilter ? new Date(dateFilterStart.getTime() + 24 * 60 * 60 * 1000) : null;
+    const noteDate = note.date ? new Date(note.date) : null;
+
+    return (
+        (categoryFilter ? note.category === categoryFilter : true) &&
+        (moodFilter ? note.mood === moodFilter : true) &&
+        (dateFilter ?
+            noteDate >= dateFilterStart && noteDate < dateFilterEnd
+            : true
+        ) &&
+        (titleFilter ? note.title.toLowerCase().includes(titleFilter.toLowerCase()) : true)
+    );
+});
+
 
   const closeAdviceOptions = () => {
     setShowAdviceOptions(null);
