@@ -72,14 +72,14 @@
 }
 
 @keyframes rainbow-text {
-    0% { color: #edc9d4}
-    16% { color: #ffd3c9 }
-    32% { color: #fff7cf }
-    48% { color: #e4f0c9 }
-    64% { color: #c7e0ff }
-    80% { color: #cfcfff }
-    100% { color: #bac3ff }
-  }
+  0% { color: #00bfff; }
+  16% { color: #00ffff; }
+  32% { color: #00ff7f; }
+  48% { color: #8a2be2; }
+  64% { color: #ff69b4; }
+  80% { color: #d3d3d3; }
+  100% { color: #1e90ff; }
+}
   
   .rainbow-text {
     animation: rainbow-text 10s infinite; 
