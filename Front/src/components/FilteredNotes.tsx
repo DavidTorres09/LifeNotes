@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios'; // Asegúrate de tener axios instalado
+import axios from 'axios'; 
 import '../styles/FilteredNotes.css';
 import { getCompletions } from '../servicesIA/getCompletions';
 
 interface Note {
+  id: number;
   title: string;
   date: string;
   category: string;
@@ -69,8 +70,16 @@ const FilteredNotes: React.FC = () => {
     setDateFilter(e.target.value);
   };
 
-  const handleDeleteNote = (index: number) => {
-    console.log(`Nota eliminada: ${index}`);
+  const handleDeleteNote = async (id: number) => {
+    if (window.confirm("¿Estás seguro de que deseas eliminar esta nota?")) {
+      try {
+        const url = `http://localhost:5023/api/lifenotes/notes/deletenote/${id}`;
+        await axios.delete(url);
+        setNotes(prevNotes => prevNotes.filter(note => note.id !== id));
+      } catch (error) {
+        console.error('Error eliminando la nota:', error);
+      }
+    }
   };
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -107,8 +116,7 @@ const FilteredNotes: React.FC = () => {
         ) &&
         (titleFilter ? note.title.toLowerCase().includes(titleFilter.toLowerCase()) : true)
     );
-});
-
+  });
 
   const closeAdviceOptions = () => {
     setShowAdviceOptions(null);
@@ -127,11 +135,9 @@ const FilteredNotes: React.FC = () => {
     });
   };
   
-
   return (
     <div className="note-filter-container mt-5 mb-10">
       <div className="filters">
-
         <div className="filter-group">
           <label htmlFor="category">Categoría:</label>
           <select id="category" value={categoryFilter} onChange={handleCategoryChange}>
@@ -174,8 +180,8 @@ const FilteredNotes: React.FC = () => {
 
       <div className="notes-container">
         {filteredNotes.length > 0 ? (
-          filteredNotes.map((note, index) => (
-            <div key={index} className="note-item">
+          filteredNotes.map(note => (
+            <div key={note.id} className="note-item">
               <div className='note-header'>
                 <h3 className='title-note'>{note.title}</h3>
                 <p className="date">{formatDate(note.date)}</p>
@@ -186,7 +192,7 @@ const FilteredNotes: React.FC = () => {
               <p><strong>Descripción:</strong> {note.content}</p>
 
               <div className="note-actions flex justify-between items-center">
-                <button onClick={() => handleDeleteNote(index)} className="delete-button">
+                <button onClick={() => handleDeleteNote(note.id)} className="delete-button">
                   🗑️ Eliminar
                 </button>
                 <button onClick={() => handleGetAdvice(note)} className="advice-button">
